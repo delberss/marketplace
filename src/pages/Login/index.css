@@ -1,0 +1,28 @@
+.login-container{
+    background-color: #262626;
+    padding: 16px;
+
+    border: 1px solid #262626
+}
+
+.login-itens{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+
+.login-itens button:focus{
+    outline: thin dotted;
+    outline: 0px auto -webkit-focus-ring-color;
+    outline-offset: 0px;
+}
+
+.login-container input{
+    margin-bottom: 16px;
+    border: 1px solid #373737;
+    padding: 4px;
+    border-radius: 8px;
+
+    font-size: 1rem;
+}

@@ -2,15 +2,10 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import './index.css';
 
-interface LoginProps {
-    type: string;
-    onClick: () => void;
-}
 
 const handleSubmit = () => {}
 
-const Login:React.FC<LoginProps> = ({
-}) => {
+const Login:React.FC = () => {
     return(
         <div className="login-container">
             <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Login</h1>

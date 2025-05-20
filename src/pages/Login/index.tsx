@@ -2,15 +2,21 @@ import { useState } from 'react';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import './index.css';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/userSlice';
+import type { AppDispatch } from '../../store';
 
 
-const handleSubmit = (
-
-) => { }
 
 const Login: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>();
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        dispatch(login({ email, password }))
+    }
 
     return (
         <div className="login-container">

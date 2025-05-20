@@ -1,23 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import './index.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/userSlice';
-import type { AppDispatch } from '../../store';
+import type { AppDispatch, RootState } from '../../store';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Login: React.FC = () => {
+    const user = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch<AppDispatch>();
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         dispatch(login({ email, password }))
     }
 
+    useEffect(() => {
+        if (user.user) {
+            navigate('/');
+        }
+    }, [user.user, navigate])
     return (
         <div className="login-container">
             <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Login</h1>

@@ -16,9 +16,16 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState<string>('')
     const navigate = useNavigate();
 
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(login({ email, password }))
+
+        const fakeApiResponse = {
+            name: "Usuário Teste",
+            email,
+            token: "mock-token-123",
+        };
+
+        dispatch(login(fakeApiResponse));
     }
 
     useEffect(() => {
@@ -29,7 +36,7 @@ const Login: React.FC = () => {
     return (
         <div className="login-container">
             <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Login</h1>
-            <div className="login-itens">
+            <form onSubmit={handleSubmit} className="login-itens">
                 <Input
                     type="email"
                     placeholder="Digite seu email"
@@ -43,8 +50,8 @@ const Login: React.FC = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <Button onClick={handleSubmit} type="submit">Login</Button>
-            </div>
+                <Button type="submit">Login</Button>
+            </form >
         </div>
     )
 }

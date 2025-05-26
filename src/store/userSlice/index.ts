@@ -1,7 +1,8 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { loadUser } from "../storage";
 
-interface UserProps {
+export interface UserProps {
     name: string;
     email: string;
     token?: string;
@@ -11,14 +12,17 @@ interface UserState {
     user: UserProps | null;
 }
 
+
 const initialState: UserState = {
-    user: null,
+      user: loadUser(),
 };
 
 interface LoginPayload {
+    name: string;
     email: string;
-    password: string;
+    token?: string;
 }
+
 
 
 const userSlice = createSlice({
@@ -26,7 +30,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action: PayloadAction<LoginPayload>) => {
-            state.user = { email: action.payload.email, name: ''};
+            state.user = {
+                email: action.payload.email, 
+                name: action.payload.name,
+                token: action.payload.token,
+            };
         },
         logout: (state) => {
             state.user = null;

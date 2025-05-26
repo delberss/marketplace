@@ -27,7 +27,9 @@ const Home = () => {
                 Home
             </div>
             <div>
-                {user.user?.email}
+                {user.user?.email} 
+                <br/>
+                {user.user?.name}
             </div>
 
             <Button onClick={handleLogout}>

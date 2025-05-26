@@ -1,0 +1,154 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #1f2937, #4b5563); 
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-bottom: 3px solid #2563eb; 
+}
+
+.logo a {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.logo a:hover {
+  transform: scale(1.05);
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  color: #e5e7eb;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.nav-menu ul li a:hover {
+  color: #60a5fa;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #374151;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.input-store {
+  border: none;
+  padding: 0.5rem;
+  outline: none;
+  background: transparent;
+  width: 180px;
+  color: #fff;
+}
+
+.input-store::placeholder {
+  color: #9ca3af;
+}
+
+.search-icon {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.search-icon:hover {
+  color: #60a5fa;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #e5e7eb;
+  cursor: pointer;
+   outline: none;
+  background: transparent;
+  transition: color 0.2s ease;
+}
+
+.settings-button:hover {
+  color: #60a5fa;
+}
+
+.settings-button:focus {
+   outline: none;
+  box-shadow: none;
+}
+
+
+.user-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: #ffffff85;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  width: 100px;
+}
+
+.dropdown-option {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 1rem;
+  color: #111827;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-option:hover {
+  background-color: #f3f4f6;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #e5e7eb;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}

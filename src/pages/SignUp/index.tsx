@@ -2,15 +2,20 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import './index.css'
+import { useNavigate } from "react-router-dom";
 
-const handleSubmit = () => {
 
-}
 const SignUp: React.FC = () => {
     const [name, setName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        navigate('/');
+    }
+
+
     return (
         <div className="signUp-container">
             <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Sign Up</h1>

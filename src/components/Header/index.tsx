@@ -6,7 +6,7 @@ import { logout } from '../../store/userSlice';
 import { FaSearch, FaUserCog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
-import { setSearchProduct } from '../../store/searchProduct';
+import { setSearchProduct } from '../../store/searchProductSlice';
 import logo from '../../assets/images/newlogo.png';
 
 export const Header = () => {

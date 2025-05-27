@@ -6,11 +6,15 @@ import { logout } from '../../store/userSlice';
 import { FaSearch, FaUserCog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
+import { setSearchProduct } from '../../store/searchProduct';
+import logo from '../../assets/images/newlogo.png';
 
 export const Header = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
+
+    const [inputSearch, setInputSearch] = useState<string>('');
 
     const handleLogout = () => {
         dispatch(logout());
@@ -29,15 +33,19 @@ export const Header = () => {
         };
     }, []);
 
+    const clearSearch = () => dispatch(setSearchProduct(''));
+
     return (
         <header className="header-container">
             <div className="logo">
-                <Link to="/"> 🛍️ DSStore</Link>
+                <Link to="/" onClick={clearSearch}> 
+                <img src={logo} />
+                </Link>
             </div>
 
             <nav className="nav-menu">
                 <ul>
-                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/" onClick={clearSearch}>Home</Link></li>
                     <li><Link to="/">Sobre nós</Link></li>
                     <li><Link to="/">Contato</Link></li>
                 </ul>
@@ -46,12 +54,22 @@ export const Header = () => {
             <div className="search-container">
                 <input
                     type="text"
-                    name="search"
+                    name={inputSearch}
                     id="search"
                     className="input-store"
                     placeholder="Buscar produtos..."
+                    onChange={(e) => setInputSearch(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            dispatch(setSearchProduct(inputSearch));
+                        }
+                    }}
                 />
-                <button className="search-icon" aria-label="Buscar">
+                <button
+                    className="search-icon"
+                    aria-label="Buscar"
+                    onClick={() => dispatch(setSearchProduct(inputSearch))}
+                >
                     <FaSearch />
                 </button>
             </div>

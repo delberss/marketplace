@@ -8,6 +8,14 @@ import { productsMock } from '../../mock/productsMock';
 
 const Home = () => {
     const user = useSelector((state: RootState) => state.user);
+    const searchProduct = useSelector((state: RootState) => state.searchProduct.searchProduct);
+
+    const filteredItems = searchProduct
+        ? productsMock.filter(product =>
+            product.title.toLowerCase().includes(searchProduct.toLowerCase())
+        )
+        : productsMock;
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,9 +27,9 @@ const Home = () => {
     return (
         <div className="container-home">
             <div className="container-products">
-                {productsMock.map((product: ProductProps, index) => (
+                {filteredItems.map((product: ProductProps) => (
                     <Product
-                        key={index}
+                        key={product.id}
                         id={product.id}
                         title={product.title}
                         image={product.image}
@@ -34,4 +42,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Home;

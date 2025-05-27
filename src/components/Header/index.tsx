@@ -37,7 +37,6 @@ export const Header = () => {
             <nav className="nav-menu">
                 <ul>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/products">Produtos</Link></li>
                     <li><Link to="/">Sobre nós</Link></li>
                     <li><Link to="/">Contato</Link></li>
                 </ul>

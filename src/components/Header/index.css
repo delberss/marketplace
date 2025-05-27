@@ -126,7 +126,7 @@
   border-radius: 0.5rem;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 999;
-  width: 100px;
+  width: 150px;
 }
 
 .dropdown-option {
@@ -146,6 +146,7 @@
 }
 
 .settings-button {
+  margin-right: 28px;
   background: none;
   border: none;
   font-size: 1.6rem;

@@ -68,6 +68,9 @@ export const Header = () => {
                 {isMenuOpen && (
                     <div className="user-dropdown">
                         <button className="dropdown-option" onClick={handleLogout}>
+                            Meus Dados
+                        </button>
+                        <button className="dropdown-option" onClick={handleLogout}>
                             Sair
                         </button>
                     </div>

@@ -11,12 +11,17 @@
 }
 
 .logo a {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  height: 100%; 
 }
+
+.logo a img {
+  height: 150px;
+  object-fit: contain;
+  display: block;
+}
+
 
 .logo a:hover {
   transform: scale(1.05);

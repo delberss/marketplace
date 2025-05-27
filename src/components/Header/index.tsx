@@ -5,6 +5,7 @@ import type { AppDispatch } from '../../store';
 import { logout } from '../../store/userSlice';
 import { FaSearch, FaUserCog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaCartShopping } from 'react-icons/fa6';
 
 export const Header = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -31,7 +32,7 @@ export const Header = () => {
     return (
         <header className="header-container">
             <div className="logo">
-                <a href="/">🛍️ DSStore</a>
+                <Link to="/"> 🛍️ DSStore</Link>
             </div>
 
             <nav className="nav-menu">
@@ -56,6 +57,11 @@ export const Header = () => {
             </div>
 
             <div className="user-actions" ref={menuRef}>
+                <button
+                    className='cart-button'
+                >
+                    <FaCartShopping />
+                </button>
                 <button
                     className="settings-button"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}

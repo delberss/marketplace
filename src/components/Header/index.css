@@ -3,10 +3,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: linear-gradient(90deg, #1f2937, #4b5563); 
+  background: linear-gradient(90deg, #1f2937, #4b5563);
   color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  border-bottom: 3px solid #2563eb; 
+  border-bottom: 3px solid #2563eb;
   width: 100vw;
 }
 
@@ -90,23 +90,24 @@
   justify-content: center;
 }
 
-.settings-button {
+.cart-button, .settings-button {
   background: none;
   border: none;
   font-size: 1.6rem;
   color: #e5e7eb;
   cursor: pointer;
-   outline: none;
+  outline: none;
   background: transparent;
   transition: color 0.2s ease;
 }
 
-.settings-button:hover {
+.cart-button:hover, .settings-button:hover
+ {
   color: #60a5fa;
 }
 
-.settings-button:focus {
-   outline: none;
+.cart-button:focus, .settings-button:focus {
+  outline: none;
   box-shadow: none;
 }
 
@@ -122,14 +123,14 @@
   position: absolute;
   top: 45px;
   right: 0;
-  background-color: #ffffff85;
-  border-radius: 0.5rem;
+  background-color: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 999;
   width: 150px;
 }
 
 .dropdown-option {
+  border-radius: 0;
   background: none;
   border: none;
   width: 100%;
@@ -142,7 +143,7 @@
 }
 
 .dropdown-option:hover {
-  background-color: #f3f4f6;
+  background-color: #11182760;
 }
 
 .settings-button {
@@ -153,4 +154,9 @@
   color: #e5e7eb;
   cursor: pointer;
   transition: color 0.2s ease;
+}
+
+.dropdown-option + .dropdown-option {
+  border-top: 1px solid #aaacb1;
+  border-radius: 0px;
 }

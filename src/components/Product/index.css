@@ -67,3 +67,7 @@
 .product-button:hover {
     background-color: #c7dfff;
 }
+
+.product-card:hover .product-description {
+    color: #2962ff; 
+}

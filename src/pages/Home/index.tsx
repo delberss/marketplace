@@ -2,8 +2,9 @@ import { useSelector } from "react-redux"
 import type { RootState } from "../../store";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header } from "../../components/Header";
 import './index.css';
+import { Product, type ProductProps } from "../../components/Product";
+import { productsMock } from '../../mock/productsMock';
 
 const Home = () => {
     const user = useSelector((state: RootState) => state.user);
@@ -16,8 +17,19 @@ const Home = () => {
     }, [user.user, navigate])
 
     return (
-        <div className="container">
-            <Header />
+        <div className="container-home">
+            <div className="container-products">
+                {productsMock.map((product: ProductProps, index) => (
+                    <Product
+                        key={index}
+                        id={product.id}
+                        title={product.title}
+                        image={product.image}
+                        description={product.description}
+                        price={product.price}
+                    />
+                ))}
+            </div>
         </div>
     )
 }

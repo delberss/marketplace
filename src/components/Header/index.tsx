@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
-import Button from '../Button';
 import './index.css';
 import type { AppDispatch } from '../../store';
 import { logout } from '../../store/userSlice';
 import { FaSearch, FaUserCog } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -36,12 +36,12 @@ export const Header = () => {
 
             <nav className="nav-menu">
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">Produtos</a></li>
-                    <li><a href="/">Sobre nós</a></li>
-                    <li><a href="/">Contato</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/products">Produtos</Link></li>
+                    <li><Link to="/">Sobre nós</Link></li>
+                    <li><Link to="/">Contato</Link></li>
                 </ul>
-            </nav>
+            </nav >
 
             <div className="search-container">
                 <input
@@ -73,6 +73,6 @@ export const Header = () => {
                     </div>
                 )}
             </div>
-        </header>
+        </header >
     );
 };

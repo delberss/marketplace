@@ -5,6 +5,8 @@ import Home from '../pages/Home';
 import type { RootState } from '../store';
 import { useSelector } from 'react-redux';
 import { DefaultLayout } from '../layouts/DefaultLayout';
+import { Cart } from '../pages/Cart';
+import { ProductDetail } from '../components/ProductDetail';
 
 
 interface PrivateRouteProps {
@@ -26,8 +28,15 @@ export function AppRoutes() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route element={<PrivateRoute><DefaultLayout /></PrivateRoute>}>
+        <Route
+          element={
+            <PrivateRoute>
+              <DefaultLayout />
+            </PrivateRoute>}>
           <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:slug" element={<ProductDetail />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

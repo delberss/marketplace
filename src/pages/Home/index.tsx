@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './index.css';
 import { Product, type ProductProps } from "../../components/Product";
 import { productsMock } from '../../mock/productsMock';
+import { Cart } from "../Cart";
 
 const Home = () => {
     const user = useSelector((state: RootState) => state.user);
@@ -38,6 +39,8 @@ const Home = () => {
                     />
                 ))}
             </div>
+
+            <Cart />
         </div>
     )
 }

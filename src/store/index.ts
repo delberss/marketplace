@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import type { Middleware } from "@reduxjs/toolkit";
 import userReducer, { login, logout } from "../store/userSlice";
-import searchProductReducer from "../store/searchProduct";
+import cartReducer from '../store/cartSlice';
+import searchProductReducer from "./searchProductSlice";
 
 import { removeUser, saveUser } from "./storage";
 
@@ -22,6 +23,7 @@ const store = configureStore({
   reducer: {
     user: userReducer,
     searchProduct: searchProductReducer,
+    cart: cartReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(localStorageMiddleware),

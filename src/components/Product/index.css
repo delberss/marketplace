@@ -60,13 +60,24 @@
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
+
+    /* Remover o outline padrão */
+    outline: none;
 }
 
+/* Hover */
 .product-button:hover {
     background-color: #c7dfff;
 }
+
+/* Focus - acessibilidade e estilo agradável */
+.product-button:focus {
+    outline: none;
+}
+
+
 
 .product-card:hover .product-description {
     color: #2962ff; 

@@ -4,13 +4,14 @@ import './index.css';
 import type { AppDispatch } from '../../store';
 import { logout } from '../../store/userSlice';
 import { FaSearch, FaUserCog } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
 import { setSearchProduct } from '../../store/searchProductSlice';
 import logo from '../../assets/images/newlogo.png';
 
 export const Header = () => {
     const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
@@ -34,6 +35,10 @@ export const Header = () => {
     }, []);
 
     const clearSearch = () => dispatch(setSearchProduct(''));
+
+    const handleCart = () => {
+        navigate('/cart');
+    }
 
     return (
         <header className="header-container">
@@ -77,6 +82,7 @@ export const Header = () => {
             <div className="user-actions" ref={menuRef}>
                 <button
                     className='cart-button'
+                    onClick={handleCart}
                 >
                     <FaCartShopping />
                 </button>

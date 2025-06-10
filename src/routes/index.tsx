@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { DefaultLayout } from '../layouts/DefaultLayout';
 import { Cart } from '../pages/Cart';
 import { ProductDetail } from '../components/ProductDetail';
+import { Checkout } from '../pages/Checkout';
 
 
 interface PrivateRouteProps {
@@ -36,6 +37,7 @@ export function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
+          <Route path="/checkout" element={<Checkout />}/>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

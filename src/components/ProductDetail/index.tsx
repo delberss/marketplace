@@ -19,7 +19,7 @@ export const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (!product) return;
-    dispatch(addToCart({ id: product.id, quantity: 1 }));
+    dispatch(addToCart({ id: product.id, quantity: 1, price: Number(product.price), description: product.description }));
     navigate('/cart')
   };
 

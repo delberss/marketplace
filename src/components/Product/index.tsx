@@ -25,7 +25,7 @@ export const Product = ({
 
     const handleCart = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        dispatch(addToCart({ id, quantity: 1 }));
+        dispatch(addToCart({ id, quantity: 1, price: Number(price), description }));
         navigate('/cart');
     };
 

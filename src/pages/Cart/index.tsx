@@ -5,10 +5,12 @@ import { productsMock } from '../../mock/productsMock';
 import { type ProductProps } from '../../components/Product';
 import { AiOutlinePlus, AiOutlineMinus, AiOutlineDelete } from 'react-icons/ai';
 import { addToCart, removeFromCart, updateQuantity } from '../../store/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleIncrease = (productId: string) => {
         const currentQuantity = cartItems.find(item => item.id === productId)?.quantity || 0;
@@ -80,10 +82,12 @@ export const Cart = () => {
 
             {filteredItems.length > 0 && (
                 <div className="cart-footer">
-                     <div className='cart-total'>
+                    <div className='cart-total'>
                         Total: {Number(totalPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                     </div>
-                    <button className="checkout-button">Finalizar Compra</button>
+                    <button onClick={() => navigate('/checkout')} className="checkout-button">
+                        Finalizar Compra
+                    </button>
                 </div>
             )}
         </div>

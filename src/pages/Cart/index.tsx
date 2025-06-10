@@ -50,7 +50,7 @@ export const Cart = () => {
                         <div className="cart-item-title">{product.title}</div>
                         <div className="cart-item-description">{product.description}</div>
                         <div className="cart-item-price">
-                            R$ {(parseFloat(product.price) * getQuantity(product.id)).toFixed(2)}
+                            R$ {(parseFloat(product.price)).toFixed(2)}
                         </div>
                     </div>
                     <div className="cart-item-actions">

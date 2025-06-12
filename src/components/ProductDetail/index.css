@@ -65,6 +65,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 50%;
 }
 
 .product-detail-info button:hover {

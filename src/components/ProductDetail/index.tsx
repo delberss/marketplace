@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { addToCart } from '../../store/cartSlice';
 import { useEffect, useState } from 'react';
 import { productsMock } from '../../mock/productsMock'; // ✅ importa o mock
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -19,7 +21,25 @@ export const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (!product) return;
-    dispatch(addToCart({ id: product.id, quantity: 1, price: Number(product.price), description: product.description }));
+    dispatch(addToCart({
+      id: product.id,
+      quantity: 1,
+      price: Number(product.price),
+      description: product.description
+    }));
+    toast.success('Produto adicionado ao carrinho!', {
+      position: 'bottom-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: 'colored',
+    });
+  };
+
+
+  const handleBuy = () => {
     navigate('/cart')
   };
 
@@ -40,13 +60,19 @@ export const ProductDetail = () => {
             })}
           </p>
           <p>{product.description}</p>
-          <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
+            <button onClick={handleBuy}>Comprar</button>
+          </div>
+
         </div>
       </div>
       <div className="product-detail-extra">
         <h2>Detalhes do produto</h2>
         <p>{product?.details}</p>
       </div>
+    <ToastContainer />
     </div>
+    
   );
 };

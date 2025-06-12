@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
 import './index.css';
-import type { AppDispatch } from '../../store';
+import type { AppDispatch, RootState } from '../../store';
 import { logout } from '../../store/userSlice';
 import { FaSearch, FaUserCog } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,6 +14,7 @@ export const Header = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
+    const cartItemsCount = useSelector((state: RootState) => state.cart.items.length);
 
     const [inputSearch, setInputSearch] = useState<string>('');
 
@@ -43,8 +44,8 @@ export const Header = () => {
     return (
         <header className="header-container">
             <div className="logo">
-                <Link to="/" onClick={clearSearch}> 
-                <img src={logo} />
+                <Link to="/" onClick={clearSearch}>
+                    <img src={logo} />
                 </Link>
             </div>
 
@@ -79,13 +80,13 @@ export const Header = () => {
                 </button>
             </div>
 
-            <div className="user-actions" ref={menuRef}>
-                <button
-                    className='cart-button'
-                    onClick={handleCart}
-                >
+            <div className="user-actions" ref={menuRef} onClick={handleCart}>
+                <button className="cart-button" >
+                    {cartItemsCount > 0 && <span className="cart-badge">{cartItemsCount}</span>}
                     <FaCartShopping />
                 </button>
+
+
                 <button
                     className="settings-button"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}

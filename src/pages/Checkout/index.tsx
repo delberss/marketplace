@@ -76,9 +76,12 @@ export const Checkout: React.FC = () => {
           ? <p>Carrinho vazio.</p>
           : cartItems.map(item => (
             <div key={item.id} className="summary-item">
-              <span>{item?.description}: {item.quantity}</span>
-              <span>R$ {(item?.price * item.quantity).toFixed(2)}</span>
+              <span className="item-description">{item?.description}</span>
+              <span className="item-quantity">x {item.quantity}</span>
+              <span className="item-price">R$ {(item?.price * item.quantity).toFixed(2)}</span>
             </div>
+
+
           ))
         }
         <hr />

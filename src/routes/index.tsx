@@ -8,7 +8,8 @@ import { DefaultLayout } from '../layouts/DefaultLayout';
 import { Cart } from '../pages/Cart';
 import { ProductDetail } from '../components/ProductDetail';
 import { Checkout } from '../pages/Checkout';
-
+import { StripeProvider } from '../StripeProvider';
+import { Payment } from '../pages/Payment';
 
 interface PrivateRouteProps {
   children: React.ReactNode;
@@ -37,7 +38,12 @@ export function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
-          <Route path="/checkout" element={<Checkout />}/>
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={
+            <StripeProvider>
+              <Payment/>
+            </StripeProvider>
+          } />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

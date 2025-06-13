@@ -93,3 +93,15 @@
   font-size: 1rem;
   color: #e2e8f0;
 }
+
+.added-button {
+  background-color: #e3eae7 !important;
+  color: #000000 !important;
+  cursor: default;
+}
+
+.added-button:hover {
+  background-color: #a3aca8 !important;
+  color: #000000 !important;
+  transform: none !important;
+}

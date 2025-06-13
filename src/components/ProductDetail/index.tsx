@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addToCart } from '../../store/cartSlice';
 import { useEffect, useState } from 'react';
-import { productsMock } from '../../mock/productsMock'; // ✅ importa o mock
+import { productsMock } from '../../mock/productsMock';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,8 +11,8 @@ export const ProductDetail = () => {
   const dispatch = useDispatch();
   const { slug } = useParams<{ slug: string }>();
   const [product, setProduct] = useState<typeof productsMock[0] | null>(null);
+  const [addedToCart, setAddedToCart] = useState(false); 
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const foundProduct = productsMock.find((p) => p.slug === slug);
@@ -20,27 +20,35 @@ export const ProductDetail = () => {
   }, [slug]);
 
   const handleAddToCart = () => {
-    if (!product) return;
+    if (!product || addedToCart) return;
+
     dispatch(addToCart({
       id: product.id,
       quantity: 1,
       price: Number(product.price),
       description: product.description
     }));
+
     toast.success('Produto adicionado ao carrinho!', {
       position: 'bottom-center',
       autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
       theme: 'colored',
     });
+
+    setAddedToCart(true); // ← Define como adicionado
   };
 
-
   const handleBuy = () => {
-    navigate('/cart')
+    if (!product) return;
+
+    dispatch(addToCart({
+      id: product.id,
+      quantity: 1,
+      price: Number(product.price),
+      description: product.description
+    }));
+
+    navigate('/cart');
   };
 
   if (!product) return <div>Produto não encontrado.</div>;
@@ -61,18 +69,23 @@ export const ProductDetail = () => {
           </p>
           <p>{product.description}</p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
+            <button
+              onClick={handleAddToCart}
+              disabled={addedToCart}
+              className={addedToCart ? 'added-button' : ''}
+            >
+              {addedToCart ? 'Produto adicionado ao carrinho' : 'Adicionar ao carrinho'}
+            </button>
+
             <button onClick={handleBuy}>Comprar</button>
           </div>
-
         </div>
       </div>
       <div className="product-detail-extra">
         <h2>Detalhes do produto</h2>
         <p>{product?.details}</p>
       </div>
-    <ToastContainer />
+      <ToastContainer />
     </div>
-    
   );
 };

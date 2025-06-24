@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import { loadUser } from "../storage";
+import { loadUser } from "../userStorage";
 
 export interface UserProps {
     name: string;

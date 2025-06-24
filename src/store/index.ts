@@ -4,7 +4,7 @@ import userReducer, { login, logout } from "../store/userSlice";
 import cartReducer from '../store/cartSlice';
 import searchProductReducer from "./searchProductSlice";
 
-import { removeUser, saveUser } from "./storage";
+import { removeUser, saveUser } from "./userStorage";
 
 const localStorageMiddleware: Middleware = storeAPI => next => action => {
   const result = next(action);

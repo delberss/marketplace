@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { loadCart, saveCart } from "../cartStorage";
 
 
 export interface CartItem {
@@ -14,7 +15,7 @@ interface CartState {
 }
 
 const initialState: CartState = {
-  items: [],
+  items: loadCart(), // inicializa com dados do localStorage
 };
 
 const cartSlice = createSlice({
@@ -26,6 +27,7 @@ const cartSlice = createSlice({
 
       if (!existingItem) {
         state.items.push({ ...action.payload });
+        saveCart(state.items); // salva após adicionar
       }
     },
 
@@ -33,6 +35,8 @@ const cartSlice = createSlice({
 
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(item => item.id !== action.payload);
+      saveCart(state.items); // salva após remover
+
     },
 
 
@@ -44,12 +48,15 @@ const cartSlice = createSlice({
         } else {
           state.items[itemIndex].quantity = action.payload.quantity;
         }
+        saveCart(state.items); // salva após atualizar
+
       }
     },
 
 
     clearCart: (state) => {
       state.items = [];
+      saveCart([]); // limpa no localStorage
     },
   },
 });

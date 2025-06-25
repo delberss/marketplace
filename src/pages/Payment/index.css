@@ -1,61 +1,77 @@
-/* Payment.css */
 
 .payment-container {
-  max-width: 400px;
+  max-width: 420px;
   margin: 60px auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  color: var(--text);
 }
 
 .payment-container h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 
 .payment-container p {
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #555;
+  font-size: 18px;
+  margin-bottom: 24px;
 }
 
 .payment-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .card-element-wrapper {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #f9f9f9;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  transition: border-color var(--transition);
+}
+
+.card-element-wrapper:focus-within {
+  border-color: var(--primary);
 }
 
 .pay-button {
-  background-color: #0070f3;
-  color: white;
+  padding: 14px;
   border: none;
-  padding: 12px;
-  border-radius: 6px;
+  border-radius: var(--radius);
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--primary);
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background var(--transition), box-shadow var(--transition);
 }
 
-.pay-button:hover {
-  background-color: #005ecb;
+.pay-button:hover:not(:disabled),
+.pay-button:focus:not(:disabled) {
+  background: var(--primary-hover);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .pay-button:disabled {
-  background-color: #a0a0a0;
+  background: var(--border);
   cursor: not-allowed;
 }
 
+.pay-button.success {
+  background: var(--success);
+}
+
+.pay-button.success:hover,
+.pay-button.success:focus {
+  background: darken(var(--success), 10%);
+}
+
 .error-message {
-  color: #e53e3e;
+  color: var(--error);
   font-size: 14px;
 }
+

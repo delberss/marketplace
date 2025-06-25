@@ -1,0 +1,10 @@
+.pay-button.success {
+  background-color: #28a745 !important; /* verde */
+  color: #fff !important;
+}
+
+.pay-button.success:hover,
+.pay-button.success:focus {
+  background-color: #218838 !important; /* verde escuro */
+  box-shadow: none;
+}

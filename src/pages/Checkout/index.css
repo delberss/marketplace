@@ -184,3 +184,15 @@
   font-size: 1rem;
   white-space: nowrap;
 }
+
+
+.checkout-form input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: #333 !important;
+}
+
+.cep-error-message {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}

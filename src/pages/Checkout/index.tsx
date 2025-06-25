@@ -1,5 +1,5 @@
 // src/pages/Checkout/index.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../store';
 import { clearCart } from '../../store/cartSlice';
@@ -12,6 +12,8 @@ export const Checkout: React.FC = () => {
   const dispatch = useDispatch();
   const [cepSuccess, setCepSuccess] = useState(false);
   const navigate = useNavigate();
+  const [cepError, setCepError] = useState(''); // Mensagem de erro para CEP
+
 
   const [form, setForm] = useState({
     name: '', email: '',
@@ -29,11 +31,10 @@ export const Checkout: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // validação
-    // if (!form.name || !form.email || !form.address || !form.number || !form.complement || !form.cep || !form.city) {
-    //   alert('Por favor, preencha todos os campos obrigatórios!');
-    //   return;
-    // }
+    if (!cepSuccess) {
+      setCepError('Por favor, informe um CEP válido antes de finalizar o pedido.');
+      return;
+    }
 
     console.log('Enviando pedido', { form, cartItems });
     dispatch(clearCart());
@@ -41,9 +42,14 @@ export const Checkout: React.FC = () => {
     navigate('/payment', { state: { total, items: cartItems }, replace: true });
   };
 
+
   const handleCepBlur = () => {
     const cepOnlyNumbers = form.cep.replace(/\D/g, '');
-    if (cepOnlyNumbers.length !== 8) return;
+    if (cepOnlyNumbers.length !== 8) {
+      setCepError('CEP incompleto.');
+      setCepSuccess(false);
+      return;
+    }
 
     cep(cepOnlyNumbers)
       .then(res => {
@@ -53,15 +59,49 @@ export const Checkout: React.FC = () => {
           city: res.city,
           cep: res.cep,
         }));
-        setCepSuccess(true)
+        setCepSuccess(true);
+        setCepError('');
       })
       .catch(err => {
         console.error(err);
-        alert('CEP inválido ou não encontrado');
+        setCepError('CEP inválido ou não encontrado');
         setCepSuccess(false);
       });
   };
 
+  useEffect(() => {
+    const cepOnlyNumbers = form.cep.replace(/\D/g, '');
+    if (cepOnlyNumbers.length !== 8 || cepSuccess) return;
+
+    cep(cepOnlyNumbers)
+      .then(res => {
+        setForm(f => ({
+          ...f,
+          address: res.street,
+          city: res.city,
+          cep: res.cep,
+        }));
+        setCepSuccess(true);
+      })
+      .catch(err => {
+        console.error(err);
+        setCepSuccess(false);
+      });
+  }, [form.cep]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter') {
+      const target = e.target as HTMLElement;
+
+      // Permite Enter se estiver em um textarea ou se o botão for o foco
+      const isTextArea = target.tagName === 'TEXTAREA';
+      const isButton = target.tagName === 'BUTTON' || (target as HTMLInputElement).type === 'submit';
+
+      if (!isTextArea && !isButton) {
+        e.preventDefault();
+      }
+    }
+  };
 
 
   return (
@@ -87,7 +127,7 @@ export const Checkout: React.FC = () => {
       </aside>
 
       {cartItems.length > 0 && (
-        <form onSubmit={handleSubmit} className="checkout-form form-block">
+        <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="checkout-form form-block">
           <h2>Dados para entrega</h2>
           <label>
             Nome completo*
@@ -105,22 +145,21 @@ export const Checkout: React.FC = () => {
               onChange={(e) => {
                 let value = e.target.value.replace(/\D/g, '');
 
-                // Impede valores maiores que 8 dígitos
                 if (value.length > 8) value = value.slice(0, 8);
 
-                // Aplica a máscara
                 if (value.length > 5) {
                   value = value.replace(/^(\d{5})(\d{1,3})$/, '$1-$2');
                 }
 
                 setForm(f => ({ ...f, cep: value }));
-                setCepSuccess(false); // Oculta novamente caso esteja incompleto
+                setCepSuccess(false);
+                setCepError('');
               }}
-
               onBlur={handleCepBlur}
               required
               maxLength={9}
             />
+            {cepError && <p className="cep-error-message">{cepError}</p>}
           </label>
           {cepSuccess && (
             <>

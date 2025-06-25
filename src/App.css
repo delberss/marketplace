@@ -1,3 +1,22 @@
+
+:root {
+  --bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --primary: #0061f2;
+  --primary-hover: #004bb5;
+  --success: #28a745;
+  --border: #e1e4e8;
+  --text: #333;
+  --placeholder: #a0aec0;
+  --error: #e53e3e;
+  --radius: 8px;
+  --transition: 0.3s;
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+}
 #root {
   max-width: 100vw;
   text-align: center;

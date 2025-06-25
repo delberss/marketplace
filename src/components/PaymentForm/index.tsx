@@ -74,26 +74,11 @@ export const PaymentForm: React.FC<{ clientSecret: string }> = ({ clientSecret }
           },
         }} />
       </div>
-
-      <input
-        type="text"
-        placeholder="CEP (ex: 12345-678)"
-        value={cep}
-        onChange={handleCepChange}
-        maxLength={9}
-        className="cep-input"
-      />
-
       <button
-        type="submit"
-        disabled={!stripe || processing || success}
         className={`pay-button ${success ? 'success' : ''}`}
+        disabled={!stripe || processing || success}
       >
-        {processing
-          ? 'Processando...'
-          : success
-            ? 'Pagamento realizado com sucesso! 🎉'
-            : 'Realizar pagamento'}
+        {processing ? 'Processando...' : success ? 'Pagamento realizado com sucesso! 🎉' : 'Realizar pagamento'}
       </button>
 
 

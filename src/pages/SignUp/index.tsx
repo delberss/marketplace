@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import './index.css'
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const SignUp: React.FC = () => {
@@ -17,19 +18,23 @@ const SignUp: React.FC = () => {
 
 
     return (
-        <div className="signUp-container">
-            <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Sign Up</h1>
-            <div className="signUp-itens">
-                <Input type="text" placeholder={"Digite seu nome"} value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <Input type="email" placeholder={"Digite seu email"} value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <Input type="password" placeholder={"Digite sua senha"} value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <Button onClick={handleSubmit} type="submit">Sign Up Now</Button>
+        <div className="signup-page">
+            <div className="signUp-container">
+                <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Sign Up</h1>
+                <div className="signUp-itens">
+                    <Input type="text" placeholder={"Digite seu nome"} value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <Input type="email" placeholder={"Digite seu email"} value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <Input type="password" placeholder={"Digite sua senha"} value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <Button onClick={handleSubmit} type="submit">Sign Up Now</Button>
+                    <Link className='toLogin' to="/login">Login</Link>
+
+                </div>
             </div>
         </div>
     )

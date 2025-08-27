@@ -5,7 +5,7 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/userSlice';
 import type { AppDispatch, RootState } from '../../store';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -34,25 +34,29 @@ const Login: React.FC = () => {
         }
     }, [user.user, navigate])
     return (
-        <div className="login-container">
-            <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Login</h1>
-            <form onSubmit={handleSubmit} className="login-itens">
-                <Input
-                    type="email"
-                    placeholder="Digite seu email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <Input
-                    type="password"
-                    placeholder="Digite sua senha"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+        <div className="login-page">
+            <div className="login-container">
+                <h1 style={{ marginBottom: '16px', fontSize: '2rem' }}>Login</h1>
+                <form onSubmit={handleSubmit} className="login-itens">
+                    <Input
+                        type="email"
+                        placeholder="Digite seu email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Digite sua senha"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-                <Button type="submit">Login</Button>
-            </form >
-        </div>
+                    <Button type="submit">Login</Button>
+                    <Link className='toSignUp' to="/signUp">Registrar-se</Link>
+                </form >
+            </div>
+        </div >
+
     )
 }
 

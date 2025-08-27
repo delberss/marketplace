@@ -1,8 +1,15 @@
-.signUp-container {
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background: linear-gradient(to bottom right, #1e1e1e, #2b2b2b);
+}
+
+.signUp-container {
   padding: 2rem;
-  max-width: 400px;
-  margin: 80px auto;
+  width: 400px;
   border-radius: 12px;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
   border: 1px solid #3a3a3a;
@@ -56,4 +63,10 @@
 .signUp-itens button:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.toLogin{
+  text-align: center;
+  color: #69bde4;
+  font-size: 0.8rem;
 }

@@ -11,7 +11,7 @@ export const ProductDetail = () => {
   const dispatch = useDispatch();
   const { slug } = useParams<{ slug: string }>();
   const [product, setProduct] = useState<typeof productsMock[0] | null>(null);
-  const [addedToCart, setAddedToCart] = useState(false); 
+  const [addedToCart, setAddedToCart] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,6 +80,7 @@ export const ProductDetail = () => {
             <button onClick={handleBuy}>Comprar</button>
           </div>
         </div>
+
       </div>
       <div className="product-detail-extra">
         <h2>Detalhes do produto</h2>

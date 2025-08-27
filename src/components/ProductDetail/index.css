@@ -101,13 +101,13 @@
 }
 
 .added-button {
-  background-color: #000000 !important;
+  background-color: #23731a !important;
   color: #FFF !important;
   cursor: default;
 }
 
 .added-button:hover {
-  background-color: #000000 !important;
+  background-color: #319426 !important;
   color: #FFF !important;
   transform: none !important;
 }

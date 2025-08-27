@@ -86,7 +86,7 @@ export const Cart = () => {
                         Total: {Number(totalPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                     </div>
                     <button onClick={() => navigate('/checkout')} className="checkout-button">
-                        Finalizar Compra
+                        Confirmar Compra
                     </button>
                 </div>
             )}

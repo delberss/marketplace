@@ -80,7 +80,7 @@ export const Cart = () => {
                 </div>
             ))}
 
-            {filteredItems.length > 0 && (
+            {filteredItems.length > 0 ? (
                 <div className="cart-footer">
                     <div className='cart-total'>
                         Total: {Number(totalPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
@@ -88,6 +88,10 @@ export const Cart = () => {
                     <button onClick={() => navigate('/checkout')} className="checkout-button">
                         Confirmar Compra
                     </button>
+                </div>
+            ) : (
+                <div className='cart-vazio'>
+                    Nenhum item no carrinho
                 </div>
             )}
         </div>

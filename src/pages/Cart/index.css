@@ -150,3 +150,7 @@
   background-color: #098800;
 }
 
+.cart-vazio{
+  color: #444;
+  font-size: 1.2rem;
+}

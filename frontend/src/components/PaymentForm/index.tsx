@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading'; // seu componente de loading
 
 export const PaymentForm: React.FC<{ clientSecret: string }> = ({ clientSecret }) => {
   const stripe = useStripe();
@@ -11,7 +12,6 @@ export const PaymentForm: React.FC<{ clientSecret: string }> = ({ clientSecret }
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
-
 
   const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let v = e.target.value.replace(/\D/g, '').slice(0, 8);
@@ -66,21 +66,32 @@ export const PaymentForm: React.FC<{ clientSecret: string }> = ({ clientSecret }
   return (
     <form onSubmit={handleSubmit} className="payment-form">
       <div className="card-element-wrapper">
-        <CardElement options={{
-          hidePostalCode: true,
-          style: {
-            base: { fontSize: '16px', color: '#32325d', '::placeholder': { color: '#a0aec0' } },
-            invalid: { color: '#fa755a' },
-          },
-        }} />
+        <CardElement
+          options={{
+            hidePostalCode: true,
+            style: {
+              base: {
+                fontSize: '16px',
+                color: '#32325d',
+                '::placeholder': { color: '#a0aec0' },
+              },
+              invalid: { color: '#fa755a' },
+            },
+          }}
+        />
       </div>
-      <button
-        className={`pay-button ${success ? 'success' : ''}`}
-        disabled={!stripe || processing || success}
-      >
-        {processing ? 'Processando...' : success ? 'Pagamento realizado com sucesso! 🎉' : 'Realizar pagamento'}
-      </button>
 
+      {/* Se estiver processando, mostra o Loading */}
+      {processing ? (
+        <Loading />
+      ) : (
+        <button
+          className={`pay-button ${success ? 'success' : ''}`}
+          disabled={!stripe || success}
+        >
+          {success ? 'Pagamento realizado com sucesso! 🎉' : 'Realizar pagamento'}
+        </button>
+      )}
 
       {error && <div className="error-message">{error}</div>}
     </form>
